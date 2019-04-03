@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { addImages } from '/Users/spencerallen/projects/library/src/redux/AddBookReducer.js';
 
 
 class OneAddBook extends Component {
@@ -8,6 +11,13 @@ class OneAddBook extends Component {
         coverImage: '',
         headerImage: '',
     }
+
+    handleInput = (key, value) => {
+        this.setState({
+            [key]: value,
+        });
+        
+    };
 
 
     render() {
@@ -20,7 +30,13 @@ class OneAddBook extends Component {
                     <div className='field-body'>
                         <div className='field'>
                             <p className='control'>
-                                <input className='input' placeholder='Book Cover Image URL'></input>
+                                <input  className='input' 
+                                        placeholder='Book Cover Image URL'
+                                        type="text"
+                                        name='coverImage'
+                                        value={this.state.coverImage}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                        ></input>
                             </p>
                         </div>
                     </div>
@@ -32,7 +48,13 @@ class OneAddBook extends Component {
                     <div className="field-body">
                         <div className="field">
                             <p className="control">
-                                <input className="input" placeholder="Book Header Image URL" />
+                                <input  className="input" 
+                                        placeholder="Book Header Image URL"
+                                        type="text" 
+                                        name='headerImage'
+                                        value={this.state.headerImage}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                        ></input>
                             </p>
                         </div>
                     </div>
@@ -40,7 +62,7 @@ class OneAddBook extends Component {
                 <div className="level-right">
                     <p className="button is-warning">
                         <strong>
-                            <Link to='/addBook/step2'>
+                            <Link to='/addBook/step2' onClick={() => this.props.addImages(this.state)}>
                                 Next ➡
                             </Link>
                         </strong>
@@ -51,4 +73,8 @@ class OneAddBook extends Component {
     }
 };
 
-export default OneAddBook
+function mapStateToProps(state) {
+    return state
+};
+
+export default connect(mapStateToProps, { addImages })(OneAddBook);

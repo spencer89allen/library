@@ -8,7 +8,7 @@ var shelfCtrl = require('./shelfController');
 
 var app = express()
 
-massive(process.env.CONNECTION_STRING, {scripts: __dirname + './db'}).then(dbInstance => {
+massive(process.env.CONNECTION_STRING,{scripts: './db'}).then(dbInstance => {
     app.set('db', dbInstance)
     console.log(`The database is connected`)
 }).catch( e => {
@@ -19,6 +19,8 @@ massive(process.env.CONNECTION_STRING, {scripts: __dirname + './db'}).then(dbIns
 app.use(bodyParser.json());
 
 //Shelf Endpoints
+app.post(`/api/addBook`, shelfCtrl.addBook)
+app.get(`/api/getBooks`, shelfCtrl.getBooks)
 
 
 var port = process.env.PORT || 4545;

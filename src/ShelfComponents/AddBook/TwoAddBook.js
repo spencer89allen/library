@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+
 
 
 class TwoAddBook extends Component {
@@ -7,7 +9,31 @@ class TwoAddBook extends Component {
     state = {
         title: '',
         author: '',
-        page_count: 0,
+        pageCount: 0,
+    }
+
+    handleInput = (name, value) => {
+        this.setState({
+            [name]: value,
+        })
+
+    }
+
+    handlePost = () => {
+
+        const { coverImage, headerImage } = this.props
+        const body = {
+            coverImage: coverImage,
+            headerImage: headerImage,
+            title: this.state.title,
+            author: this.state.author,
+            pageCount: this.state.pageCount,
+        }
+        
+        axios.post(`/api/addBook`, body).then(() => {
+            this.props.history.push('/')
+        })
+
     }
 
 
@@ -22,7 +48,12 @@ class TwoAddBook extends Component {
                         <div className='field-body'>
                             <div className='field'>
                                 <p className='control'>
-                                    <input className='input' placeholder='Title'></input>
+                                    <input className='input'
+                                        placeholder='Title'
+                                        name='title'
+                                        value={this.state.title}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                    ></input>
                                 </p>
                             </div>
                         </div>
@@ -34,7 +65,12 @@ class TwoAddBook extends Component {
                         <div className="field-body">
                             <div className="field">
                                 <p className="control">
-                                    <input className="input" placeholder="Author Name" />
+                                    <input className="input"
+                                        placeholder="Author Name"
+                                        name='author'
+                                        value={this.state.author}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                    />
                                 </p>
                             </div>
                         </div>
@@ -46,7 +82,12 @@ class TwoAddBook extends Component {
                         <div className="field-body">
                             <div className="field">
                                 <p className="control">
-                                    <input className="input" placeholder="Number of pages in Book" />
+                                    <input className="input"
+                                        placeholder="Number of pages in Book"
+                                        name='pageCount'
+                                        value={this.state.pageCount}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                    />
                                 </p>
                             </div>
                         </div>
@@ -63,11 +104,11 @@ class TwoAddBook extends Component {
                             </p>
                         </div>
                         <div className="level-right">
-                            <p className="button is-link is-hovered">
+                            <span className="button is-link is-hovered" onClick={() => this.handlePost()}>
                                 <strong>
                                     Add New Book
                                 </strong>
-                            </p>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -76,4 +117,5 @@ class TwoAddBook extends Component {
     }
 };
 
-export default TwoAddBook
+
+export default TwoAddBook;
