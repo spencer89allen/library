@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 //Shelf Endpoints
 app.post(`/api/addBook`, shelfCtrl.addBook)
 app.get(`/api/getBooks`, shelfCtrl.getBooks)
-
+app.delete(`/api/deleteBook/:id`, shelfCtrl.deleteBook)
 
 var port = process.env.PORT || 4545;
 app.listen(port, () => {

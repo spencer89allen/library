@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 
 
@@ -20,7 +22,6 @@ class TwoAddBook extends Component {
     }
 
     handlePost = () => {
-
         const { coverImage, headerImage } = this.props
         const body = {
             coverImage: coverImage,
@@ -29,7 +30,6 @@ class TwoAddBook extends Component {
             author: this.state.author,
             pageCount: this.state.pageCount,
         }
-        
         axios.post(`/api/addBook`, body).then(() => {
             this.props.history.push('/')
         })
@@ -117,5 +117,8 @@ class TwoAddBook extends Component {
     }
 };
 
+function mapStateToProps(state) {
+    return state
+}
 
-export default TwoAddBook;
+export default connect(mapStateToProps)(TwoAddBook);

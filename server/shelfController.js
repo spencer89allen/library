@@ -25,4 +25,17 @@ module.exports = {
             console.log(err)
         });
     },
+
+    deleteBook: (req, res) => {
+        const dbInstance = req.app.get('db')
+        const { id } = req.params
+        
+        dbInstance.delete_book([id]).then(() => {
+            dbInstance.get_books().then((books) => {
+                res.status(200).send(books)
+            }).catch((err) => {
+                res.status(409).send({errMessage: 'For some reason the book was not deleted.'})
+            })
+        })
+    }
 }

@@ -31,7 +31,7 @@ export default function Header() {
                             Spencer's Library
                         </h1>
                         <h2 className="subtitle">
-                            Primary bold subtitle
+                            Book Summaries
                         </h2>
                     </div>
                 </div>

@@ -2,9 +2,6 @@
 const initialState = {
     coverImage: '',
     headerImage: '',
-    title: '',
-    author: '',
-    pageCount: 0,
 };
 
 //Section 2 - Action Types
