@@ -7,20 +7,29 @@ import Report from './Report';
 class Book extends Component {
 
     state = {
+        id: null,
         headerImage: '',
         title: '',
-        author: '',
         chapterList: [],
     }
 
     componentWillMount() {
-        axios.get(`/api/getBook/${this.props.match.params.id}`).then()
-    }
+        axios.get(`/api/getBook/${this.props.match.params.id}`).then((response) => {
+            console.log(response.data)
+            this.setState({
+                id: response.data.id,
+                title: response.data.title,
+                headerImage: response.data.header_image,
+
+            })
+            console.log(this.state)
+        })
+    };
 
     render () {
         return (
             <div>
-                <HeaderBook />
+                <HeaderBook header={this.state.title} />
                 <Report />
             </div>
         )
