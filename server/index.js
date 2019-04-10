@@ -5,9 +5,11 @@ var massive = require('massive');
 require('dotenv').config({ path: __dirname + '/.env'});
 
 var shelfCtrl = require('./shelfController');
+var bookCtrl = require('./bookController');
 
 var app = express()
 
+//DATABASE CONNECTION
 massive(process.env.CONNECTION_STRING,{scripts: __dirname + '/db'}).then(dbInstance => {
     app.set('db', dbInstance)
     console.log(`The database is connected`)
@@ -18,11 +20,16 @@ massive(process.env.CONNECTION_STRING,{scripts: __dirname + '/db'}).then(dbInsta
 
 app.use(bodyParser.json());
 
-//Shelf Endpoints
+//ENDPOINTS
+//shelf endpoints
 app.post(`/api/addBook`, shelfCtrl.addBook)
 app.get(`/api/getBooks`, shelfCtrl.getBooks)
 app.delete(`/api/deleteBook/:id`, shelfCtrl.deleteBook)
 
+//book endpoints
+app.get(`/api/getBook/:id`, bookCtrl.getBook)
+
+//SERVER LISTINING
 var port = process.env.PORT || 4545;
 app.listen(port, () => {
     console.log(`The server is listening on port ${port}`)

@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 
 import HeaderBook from './HeaderBook';
-import ChapterList from './ChapterList';
-import ReportDisplay from './ReportDisplay';
+import Report from './Report';
 
 class Book extends Component {
 
     state = {
-        id: null,
         headerImage: '',
         title: '',
         author: '',
         chapterList: [],
     }
 
+    componentWillMount() {
+        axios.get(`/api/getBook/${this.props.match.params.id}`).then()
+    }
+
     render () {
         return (
             <div>
                 <HeaderBook />
-                <ChapterList />
-                <ReportDisplay />
+                <Report />
             </div>
         )
     };
