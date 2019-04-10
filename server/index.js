@@ -8,7 +8,7 @@ var shelfCtrl = require('./shelfController');
 
 var app = express()
 
-massive(process.env.CONNECTION_STRING,{scripts: './db'}).then(dbInstance => {
+massive(process.env.CONNECTION_STRING,{scripts: __dirname + '/db'}).then(dbInstance => {
     app.set('db', dbInstance)
     console.log(`The database is connected`)
 }).catch( e => {

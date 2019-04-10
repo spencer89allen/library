@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function DisplayShelf(props) {
     const books = props.book.map(book => {
@@ -18,7 +19,9 @@ export default function DisplayShelf(props) {
                     {book.page_count} pages
                 </p>
                 <div className="level buttons are-small">
-                    <button className='button level-left'>Read</button>
+                    <Link to='/book'>
+                        <button className='button level-left'>Read</button>
+                    </Link>
                     <button className="button level-right" onClick={() => props.delete(book.id)}>Delete</button>
                 </div>
             </div>

@@ -35,6 +35,7 @@ module.exports = {
                 res.status(200).send(books)
             }).catch((err) => {
                 res.status(409).send({errMessage: 'For some reason the book was not deleted.'})
+                console.log(err)
             })
         })
     }
