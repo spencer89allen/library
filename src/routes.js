@@ -11,7 +11,7 @@ export default (
         <Route component={ Shelf } exact path='/' />
         <Route component={ AddBook } path='/addBook' />
         <Route component={ Book } path='/book/:id' />
-        <Route component={ NewChapter } path='/newChapter' />
+        <Route component={ NewChapter } path='/newChapter/:id' />
 
     </Switch>
 )

@@ -17,7 +17,7 @@ class Book extends Component {
         axios.get(`/api/getBook/${this.props.match.params.id}`).then((response) => {
             console.log(response.data)
             this.setState({
-                id: response.data.id,
+                id: this.props.match.params.id,
                 title: response.data.title,
                 headerImage: response.data.header_image,
 
@@ -29,7 +29,7 @@ class Book extends Component {
     render () {
         return (
             <div>
-                <HeaderBook header={this.state.title} />
+                <HeaderBook header={this.state.title} bookId={this.state.id}/>
                 <Report />
             </div>
         )

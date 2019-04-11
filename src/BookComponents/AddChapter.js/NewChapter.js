@@ -3,7 +3,20 @@ import { Link } from 'react-router-dom';
 
 class NewChapter extends Component {
 
-    render() {
+  
+
+        state = {
+            id: null,
+        }
+    
+
+    componentWillMount (props) {
+        this.setState({
+            id: this.props.match.params.id
+        })
+    }
+
+    render(props) {
         return (
             <div>
                 <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -18,7 +31,7 @@ class NewChapter extends Component {
                         <div className='navbar-item'>
                             <p className="button is-danger is-outlined ">
                                 <strong>
-                                    <Link to='/book'>
+                                    <Link to={`/book/${this.state.id}`}>
                                         Never Mind
                                     </Link>
                                 </strong>
