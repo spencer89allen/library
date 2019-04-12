@@ -6,6 +6,7 @@ require('dotenv').config({ path: __dirname + '/.env'});
 
 var shelfCtrl = require('./shelfController');
 var bookCtrl = require('./bookController');
+var chapterCtrl = require('./chapterController');
 
 var app = express()
 
@@ -28,6 +29,10 @@ app.delete(`/api/deleteBook/:id`, shelfCtrl.deleteBook)
 
 //book endpoints
 app.get(`/api/getBook/:id`, bookCtrl.getBook)
+
+//new chapter endpoints
+app.get(`api/bookInfo/:id`, chapterCtrl.bookInfo)
+app.post(`api/newChapterNotes`, chapterCtrl.postChapterInfo)
 
 //SERVER LISTINING
 var port = process.env.PORT || 4545;

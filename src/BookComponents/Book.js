@@ -8,8 +8,8 @@ class Book extends Component {
 
     state = {
         id: null,
-        headerImage: '',
         title: '',
+        headerImage: '',
         chapterList: [],
     }
 
@@ -18,11 +18,10 @@ class Book extends Component {
             console.log(response.data)
             this.setState({
                 id: this.props.match.params.id,
-                title: response.data.title,
-                headerImage: response.data.header_image,
+                title: response.data[0].title,
+                headerImage: response.data[0].header_image,
 
             })
-            console.log(this.state)
         })
     };
 

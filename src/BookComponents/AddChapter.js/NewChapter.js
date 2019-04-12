@@ -1,56 +1,110 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import HeaderNewChapter from './HeaderNewChapter';
 
 class NewChapter extends Component {
 
-  
-
-        state = {
-            id: null,
-        }
-    
-
-    componentWillMount (props) {
-        this.setState({
-            id: this.props.match.params.id
-        })
+    state = {
+        id: null,
+        bookTitle: '',
+        number: '',
+        title: '',
+        notes: '',
     }
 
-    render(props) {
+
+    componentWillMount() {
+        axios.get(`/api/getBook/${this.props.match.params.id}`).then((response) => {
+                this.setState({
+                id: this.props.match.params.id,
+                bookTitle: response.data[0].title
+            })
+            console.log(this.state)
+        })
+    
+    }
+
+    handleInput = (name, value) => {
+        this.setState({
+            [name]: value,
+        })
+        console.log(this.state)
+    }
+
+    handlePostChapterNotes = () => {
+        const { id, number, title, notes } = this.state;
+        const chapterInfo = { id, number, title, notes };
+        
+        axios.post(`api/newChapterNotes`, chapterInfo)
+    }
+
+    render() {
         return (
             <div>
-                <nav className="navbar" role="navigation" aria-label="main navigation">
-                    <div className="navbar-brand">
-                        <a className="navbar-item" href="https://bulma.io">
-                            <img src="https://bulma.io/images/bulma-logo.png" alt="No Header, sorry" width="112" height="28" />
-                        </a>
-                        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-                        </a>
-                    </div>
-                    <div className='navbar-end'>
-                        <div className='navbar-item'>
-                            <p className="button is-danger is-outlined ">
-                                <strong>
-                                    <Link to={`/book/${this.state.id}`}>
-                                        Never Mind
-                                    </Link>
-                                </strong>
-                            </p>
+                <HeaderNewChapter bookId={this.state.id} headerTitle={this.state.bookTitle}/>
+                <div className='container'>
+                    <br />
+                    <div className='field is-horizontal'>
+                        <div className='field-label is-normal'>
+                            <label className='label'>Chapter Number:</label>
+                        </div>
+                        <div className='field-body'>
+                            <div className='field'>
+                                <p className='control'>
+                                    <input className='input'
+                                        placeholder='#'
+                                        type="text"
+                                        name='number'
+                                        value={this.state.number}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                    ></input>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </nav>
-                <section className="hero is-medium is-primary is-bold">
-                    <div className="hero-body">
-                        <div className="container">
-                            <h1 className="title">
-                                New Chapter Report
-                            </h1>
-                            <h2 className="subtitle">
-                                Primary bold subtitle
-                            </h2>
+                    <div className="field is-horizontal">
+                        <div className="field-label is-normal">
+                            <label className="label">Chapter Title: </label>
+                        </div>
+                        <div className='field-body'>
+                            <div className='field'>
+                                <p className='control'>
+                                    <input className='input'
+                                        placeholder='Chapter Title goes here'
+                                        type="text"
+                                        name='title'
+                                        value={this.state.title}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                    ></input>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </section>
+                    <div className="field is-horizontal">
+                        <div className="field-label is-normal">
+                            <label className="label">Chapter Notes: </label>
+                        </div>
+                        <div className='field-body'>
+                            <div className='field'>
+                                <p className='control'>
+                                    <textarea className="textarea" 
+                                            placeholder="10 lines of textarea" 
+                                            rows="10"
+                                            type='text'
+                                            name='notes'
+                                            value={this.state.value}
+                                            onChange={ (e) => this.handleInput(e.target.name, e.target.value) } />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='level-right'>
+                        <p className='button is-link is-outlined' onClick={() => this.handlePostChapterNotes()}>
+                            <strong>Post</strong>
+                        </p>
+                    </div>
+                </div>
             </div>
         )
     }
