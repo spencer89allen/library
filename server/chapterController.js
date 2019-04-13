@@ -13,6 +13,14 @@ module.exports = {
     },
 
     postChapterInfo: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { id, number, title, notes } = req.body;
 
+        dbInstance.add_chapter_to_book([id, number, title, notes]).then(response => {
+            res.status(200).send('A new chapter summary as been added to the database')
+        }).catch(err => {
+            console.log(err)
+            res.status(500).send('Something went wrong adding a new chapter summary')
+        })
     },
 }

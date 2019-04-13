@@ -15,7 +15,7 @@ export default function HeaderBook(props) {
                 </div>
                 <div className='navbar-end'>
                     <div className='navbar-item'>
-                        <Link to={`/newChapter/${props.bookId}`}>
+                        <Link to={`/newChapter/id_${props.bookId}`}>
                             <p className='button is-primary'>
                                 <strong>Add Chapter Summary</strong>
                             </p>
@@ -30,7 +30,7 @@ export default function HeaderBook(props) {
                             {props.header}
                         </h1>
                         <h2 className="subtitle">
-                            Spencer's Summaries
+                            Spencer's Notes
                         </h2>
                     </div>
                 </div>

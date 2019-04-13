@@ -15,7 +15,7 @@ class Book extends Component {
 
     componentWillMount() {
         axios.get(`/api/getBook/${this.props.match.params.id}`).then((response) => {
-            console.log(response.data)
+            
             this.setState({
                 id: this.props.match.params.id,
                 title: response.data[0].title,

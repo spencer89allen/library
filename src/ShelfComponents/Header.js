@@ -4,24 +4,24 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
-        <div className="container is-fullhd">
+        <div className="">
             <br />
-            <nav className="level">
-                <div className="level-left">
-                    <div className="level-item">
-                        <p className="subtitle is-5">
-                            <strong> BAM!</strong>
-                        </p>
-                    </div>
+            <nav className="navbar" role="navigation" aria-label="main navigation">
+                <div className="navbar-brand">
+                    <p className="navbar-item" >
+                        <strong>BAM!</strong>
+                    </p>
                 </div>
-                <div className="level-right">
-                    <p className="level-item">
+                <div className='navbar-end'>
+                    <div className='navbar-item'>
                         <strong>
                             <Link to='addBook/step1'>
-                                Add a Book 
+                            <p className='button is-info'>
+                                <strong>Add New Book</strong>
+                            </p>
                             </Link>
                         </strong>
-                    </p>
+                    </div>
                 </div>
             </nav>
             <section className="hero is-medium is-primary is-bold">

@@ -20,7 +20,7 @@ class NewChapter extends Component {
                 id: this.props.match.params.id,
                 bookTitle: response.data[0].title
             })
-            console.log(this.state)
+            
         })
     
     }
@@ -29,14 +29,17 @@ class NewChapter extends Component {
         this.setState({
             [name]: value,
         })
-        console.log(this.state)
+        
     }
 
     handlePostChapterNotes = () => {
         const { id, number, title, notes } = this.state;
         const chapterInfo = { id, number, title, notes };
         
-        axios.post(`api/newChapterNotes`, chapterInfo)
+        axios.post(`api/newChapterNotes`, chapterInfo).then(() => {
+            this.props.history.push(`/book/id_${id}`)
+        })
+
     }
 
     render() {
