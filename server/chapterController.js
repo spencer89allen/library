@@ -23,4 +23,16 @@ module.exports = {
             res.status(500).send('Something went wrong adding a new chapter summary')
         })
     },
+
+    getChapterList: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { id } = req.params;
+        
+        dbInstance.get_chapter_list([id]).then(chapters => {
+            res.status(200).send(chapters)
+        }).catch(err => {
+            console.log(err)
+            res.status(500).send('Something went wrong getting the chapter list from the database')
+        })
+    },
 }

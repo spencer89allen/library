@@ -31,6 +31,7 @@ app.get(`/api/getBook/:id`, shelfCtrl.getBook)
 
 //new chapter endpoints
 app.get(`/api/bookInfo/:id`, chapterCtrl.bookInfo)
+app.get(`/api/getChapterList/:id`, chapterCtrl.getChapterList)
 app.post(`/api/newChapterNotes`, chapterCtrl.postChapterInfo)
 
 //SERVER LISTINING

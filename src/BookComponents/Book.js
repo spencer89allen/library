@@ -15,7 +15,7 @@ class Book extends Component {
 
     componentWillMount() {
         axios.get(`/api/getBook/${this.props.match.params.id}`).then((response) => {
-            
+
             this.setState({
                 id: this.props.match.params.id,
                 title: response.data[0].title,
@@ -23,12 +23,23 @@ class Book extends Component {
 
             })
         })
+        this.getChapterList()
+        
     };
 
-    render () {
+    getChapterList = () => {
+        axios.get(`/api/getChapterList/${this.props.match.params.id}`).then(response => {
+            this.setState({
+                chapterList: response.data[0]
+            }) 
+            console.log(this.state) 
+        })
+    }
+
+    render() {
         return (
             <div>
-                <HeaderBook header={this.state.title} bookId={this.state.id}/>
+                <HeaderBook header={this.state.title} bookId={this.state.id} />
                 <Report />
             </div>
         )
