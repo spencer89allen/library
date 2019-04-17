@@ -32,7 +32,7 @@ module.exports = {
             res.status(200).send(chapters)
         }).catch(err => {
             console.log(err)
-            res.status(500).send('Something went wrong getting the chapter list from the database')
+            res.status(500).send('Something went wrong getting the chapter info from the database')
         })
     },
 }
