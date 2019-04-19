@@ -10,8 +10,8 @@ export default (
     <Switch>
         <Route component={ Shelf } exact path='/' />
         <Route component={ AddBook } path='/addBook' />
-        <Route component={ Book } path='/book/id_:id' />
-        <Route component={ NewChapter } path='/newChapter/id_:id' />
+        <Route component={ NewChapter } path='/book/:book_id/chapter/new' />
+        <Route component={ Book } path='/book/:book_id' />
 
     </Switch>
 )

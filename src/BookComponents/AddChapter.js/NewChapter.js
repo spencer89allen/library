@@ -15,9 +15,9 @@ class NewChapter extends Component {
 
 
     componentWillMount() {
-        axios.get(`/api/getBook/${this.props.match.params.id}`).then((response) => {
+        axios.get(`/api/getBook/${this.props.match.params.book_id}`).then((response) => {
                 this.setState({
-                id: this.props.match.params.id,
+                id: this.props.match.params.book_id,
                 bookTitle: response.data[0].title
             })
             

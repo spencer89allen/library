@@ -16,7 +16,7 @@ export default function HeaderNewChapter(props) {
                     <div className='navbar-item'>
                         <p className="button is-danger is-outlined ">
                             <strong>
-                                <Link to={`/book/id_${props.bookId}`}>
+                                <Link to={`/book/${props.bookId}`}>
                                     Never Mind
                                 </Link>
                             </strong>

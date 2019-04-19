@@ -20,7 +20,7 @@ export default function DisplayShelf(props) {
                         {book.page_count} pages
                 </p>
                     <div className="level buttons are-small">
-                        <Link to={`/book/id_${book.id}`}>
+                        <Link to={`/book/${book.id}`}>
                             <button className='button level-left'>Read</button>
                         </Link>
                         <button className="button level-right" onClick={() => props.delete(book.id)}>Delete</button>
