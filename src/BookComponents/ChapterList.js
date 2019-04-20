@@ -16,7 +16,7 @@ function ChapterList(props) {
     return (
 
         <div className='column is-3'>
-            <aside className="menu">
+            <aside className="menu ">
                 <p className="menu-label">
                     Report Menu
                 </p>

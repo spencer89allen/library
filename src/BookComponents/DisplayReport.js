@@ -23,7 +23,7 @@ function DisplayReport(props) {
     console.log(report)
 
     return (
-        <div className='column is-9'>
+        <div className='column is-9 '>
             Book Report
             <h2>{notes}</h2>
         </div>

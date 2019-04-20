@@ -1,5 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var sessions = require('express-session');
+var bcrypt = require('bcrypt');
 var massive = require('massive');
 
 require('dotenv').config({ path: __dirname + '/.env'});
@@ -18,7 +22,70 @@ massive(process.env.CONNECTION_STRING,{scripts: __dirname + '/db'}).then(dbInsta
     console.error(e);
 });
 
+//BODYPARSER INVOKED
 app.use(bodyParser.json());
+
+//SESSIONS
+app.use(sessions({
+    saveUninitialized: false,
+    resave: false,
+    secret: "shhh it's a secret"
+}));
+
+//AUTH WITH PASSPORT
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use( 'login', new LocalStrategy( function ( username, password, done ) {
+    if( username.length === 0 || password.length === 0 ) {
+        return done ( null, false, { message: 'Username and Password are required' });
+    };
+    
+    const dbInstance = app.get( 'db' );
+    dbInstance.users.find({ username }).then( userInfo => {
+        const user = userInfo[0];
+        if(user === undefined) {
+            return done( null, false, { message: 'username does not exist' })
+        }
+        delete user.password
+        done( null, user );
+    }).catch( error => {
+        console.log( error.message );
+    })
+}));
+
+passport.use( 'register', new LocalStrategy ( function ( username, password, done ) {
+    if ( username.length === 0 || password.length === 0 ) {
+        return done( null, false, { message: 'Username and Password are required' } );
+    }
+
+    const dbInstance = app.get( 'db' )
+    const hashedPassword = bcrypt.hashSync( password, 15 );
+
+    dbInstance.users.find( { username } ).then( userInfo => {
+        if( userInfo.lenght > 0) {
+            return done( null, false, { message: "Username is not available" });
+        }
+        return dbInstance.add_new_user( [ username, hashedPassword ] );
+    }).then( user  => {
+        const newUser = user[0];
+        delete newUser.password;
+        done( null, newUser );
+    }).catch( error => {
+        console.log(error.message)
+    })
+}));
+
+passport.serializeUser(( user, done ) => {
+    done( null, user );
+});
+
+passport.deserializeUser(( id, done ) => {
+    done( null, id );
+});
+
+    
+
 
 //ENDPOINTS
 //shelf endpoints
@@ -33,6 +100,16 @@ app.get(`/api/getBook/:id`, shelfCtrl.getBook)
 app.get(`/api/bookInfo/:id`, chapterCtrl.bookInfo)
 app.get(`/api/getChapterList/:id`, chapterCtrl.getChapterList)
 app.post(`/api/newChapterNotes`, chapterCtrl.postChapterInfo)
+
+//auth endpoints
+app.post('/auth/login', passport.authenticate( 'login' ), (req, res) => {
+    const { user } = req;
+    res.send(user);
+});
+app.post('/auth/register', passport.authenticate('register'), (req, res) => {
+    const { user } = req;
+    res.send(user);
+});
 
 //SERVER LISTINING
 var port = process.env.PORT || 4545;
