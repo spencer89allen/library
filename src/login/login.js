@@ -1,26 +1,64 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class Login extends Component {
+constructor (props) {
+    super(props);
+    
+    this.state = {
+        username: '',
+        password: '',
+        login: true,
+    }
+}
+    
+
+    handleInput = (name, value) => {
+        this.setState({
+            [name]: value,
+        })
+    }
+
+    handleNeverMind = () => {
+        this.props.history.goBack()
+    }
+
+    handleLogin = () => {
+console.log(this.state, this.state.username.length)
+        if (this.state.username.length === 0 || this.state.password.length === 0) {
+            console.log('Please fill in Username and Password input fields')
+        } else {
+
+            const { username, password } = this.state
+            const body = { username, password }
+
+            axios.post(`/auth/login`, body).then((res) => {
+                console.log(res)
+                this.props.history.goBack()
+            })
+        }
+
+    }
 
     render() {
         return (
-            <div className="">
+            <div className="container is-fullhd">
                 <br />
-                <nav className="navbar" role="navigation" aria-label="main navigation">
-                    <div className="navbar-brand">
-                        <p className="navbar-item" >
-                            <strong>BAM!</strong>
-                        </p>
+                <nav className="level">
+                    <div className="level-left">
+                        <div className="level-item">
+                            <p className="subtitle is-5">
+                                <strong> BAM!</strong>
+                            </p>
+                        </div>
                     </div>
                     <div className='navbar-end'>
                         <div className='navbar-item'>
                             <strong>
-                                <Link to='/'>
-                                    <p className='button is-danger is-outlined'>
-                                        <strong>Never Mind</strong>
-                                    </p>
-                                </Link>
+                                <p className='button is-danger is-outlined'
+                                    onClick={() => this.handleNeverMind()}>
+                                    <strong>Never Mind</strong>
+                                </p>
                             </strong>
                         </div>
                     </div>
@@ -47,7 +85,10 @@ class Login extends Component {
                             <div className='field'>
                                 <p className='control'>
                                     <input className='input'
-                                        placeholder='Username'>
+                                        placeholder='Username or Email'
+                                        name='username'
+                                        value={this.state.username}
+                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
                                     </input>
                                 </p>
                             </div>
@@ -63,7 +104,10 @@ class Login extends Component {
                                 <div className='field'>
                                     <p className='control'>
                                         <input className='input'
-                                            placeholder='Password'>
+                                            placeholder='Password'
+                                            name='password'
+                                            value={this.state.password}
+                                            onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
                                         </input>
                                     </p>
                                 </div>
@@ -72,12 +116,9 @@ class Login extends Component {
                     </div>
                     <br />
                     <div className="level-right">
-                        <p className="button is-warning">
-                            <strong>
-                                <Link to='/'>
-                                   Login
-                                </Link>
-                            </strong>
+                        <p className="button is-warning"
+                            onClick={() => this.handleLogin()}>
+                            <strong>Login</strong>
                         </p>
                     </div>
                 </div>

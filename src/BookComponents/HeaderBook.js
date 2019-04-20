@@ -20,6 +20,11 @@ export default function HeaderBook(props) {
                                 <strong>Add Chapter Summary</strong>
                             </p>
                         </Link>
+                        <Link to={`/login`}>
+                            <p className='button is-primary'>
+                                <strong>Login</strong>
+                            </p>
+                        </Link>
                     </div>
                 </div>
             </nav>
