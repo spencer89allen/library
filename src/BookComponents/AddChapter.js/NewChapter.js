@@ -37,7 +37,7 @@ class NewChapter extends Component {
         const chapterInfo = { id, number, title, notes };
         
         axios.post(`api/newChapterNotes`, chapterInfo).then(() => {
-            this.props.history.push(`/book/id_${id}`)
+            this.props.history.push(`/book/${id}`)
         })
 
     }

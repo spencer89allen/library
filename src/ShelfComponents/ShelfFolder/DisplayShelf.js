@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default function DisplayShelf(props) {
+function DisplayShelf(props) {
+    //console.log(props)
     const books = props.book.map(book => {
         return (
             
@@ -23,7 +25,16 @@ export default function DisplayShelf(props) {
                         <Link to={`/book/${book.id}`}>
                             <button className='button level-left'>Read</button>
                         </Link>
-                        <button className="button level-right" onClick={() => props.delete(book.id)}>Delete</button>
+                        {
+                            props.isLogin ? 
+                            (
+                                <button className="button level-right" onClick={() => props.delete(book.id)}>Delete</button>
+                            )
+                            :
+                            (
+                                null
+                            )
+                        }
                     </div>
                 </div>
             
@@ -35,4 +46,12 @@ export default function DisplayShelf(props) {
         </div>
     )
 };
+
+function mapStateToProps(state) {
+    return {
+        isLogin: state.LoginReducer.isLogin
+    }
+};
+
+export default connect(mapStateToProps, {})(DisplayShelf);
 

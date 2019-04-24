@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+ 
 
 
-export default function Header() {
+function Header(props) {
+    console.log(props)
     return (
         <div className="container is-fullhd">
             <br />
@@ -17,16 +21,25 @@ export default function Header() {
                 <div className='navbar-end'>
                     <div className='navbar-item'>
                         <strong>
-                            <Link to='addBook/step1'>
-                            <p className='button is-info'>
-                                <strong>Add New Book</strong>
-                            </p>
-                            </Link>
-                            <Link to='/login'>
-                            <p className='button is-info'>
-                                <strong>Login</strong>
-                            </p>
-                            </Link>
+                            
+                            
+                            {props.isLogin ?
+                            (
+                                <Link to='addBook/step1'>
+                                    <p className='button is-info'>
+                                        <strong>Add New Book</strong>
+                                    </p>
+                                </Link>
+                            )    
+                            :
+                            (
+                                <Link to='/login'>
+                                    <p className='button is-info'>
+                                        <strong>Login</strong>
+                                    </p>
+                                </Link>
+                            )
+                        }
                         </strong>
                     </div>
                 </div>
@@ -47,3 +60,11 @@ export default function Header() {
         </div>
     )
 };
+
+function mapStateToProps(state) {
+    return {
+        isLogin: state.LoginReducer.isLogin
+    }
+};
+
+export default connect(mapStateToProps)(Header);

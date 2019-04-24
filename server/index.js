@@ -63,7 +63,7 @@ passport.use( 'register', new LocalStrategy ( function ( username, password, don
     const hashedPassword = bcrypt.hashSync( password, 15 );
 
     dbInstance.users.find( { username } ).then( userInfo => {
-        if( userInfo.lenght > 0) {
+        if( userInfo.length > 0) {
             return done( null, false, { message: "Username is not available" });
         }
         return dbInstance.add_new_user( [ username, hashedPassword ] );
@@ -83,8 +83,6 @@ passport.serializeUser(( user, done ) => {
 passport.deserializeUser(( id, done ) => {
     done( null, id );
 });
-
-    
 
 
 //ENDPOINTS

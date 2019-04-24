@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { login } from '/Users/spencerallen/projects/library/src/redux/LoginReducer.js';
 
 
-export default function HeaderBook(props) {
+function HeaderBook(props) {
+    //console.log(props)
     return (
         <div>
             <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -15,16 +19,26 @@ export default function HeaderBook(props) {
                 </div>
                 <div className='navbar-end'>
                     <div className='navbar-item'>
-                        <Link to={`/book/${props.bookId}/chapter/new`}>
-                            <p className='button is-primary'>
-                                <strong>Add Chapter Summary</strong>
-                            </p>
-                        </Link>
-                        <Link to={`/login`}>
-                            <p className='button is-primary'>
-                                <strong>Login</strong>
-                            </p>
-                        </Link>
+                        
+
+                        {
+                            props.isLogin ? 
+                            (
+                                <Link to={`/book/${props.bookId}/chapter/new`}>
+                                    <p className='button is-primary'>
+                                        <strong>Add Chapter Summary</strong>
+                                    </p>
+                                </Link>
+                            )
+                            :
+                            (
+                                <Link to={`/login`}>
+                                    <p className='button is-primary'>
+                                        <strong>Login</strong>
+                                    </p>
+                                </Link>
+                            )
+                        }
                     </div>
                 </div>
             </nav>
@@ -43,3 +57,11 @@ export default function HeaderBook(props) {
         </div>
     )
 };
+
+function mapStateToProps(state) {
+    return {
+        isLogin: state.LoginReducer.isLogin,
+    }
+};
+
+export default connect(mapStateToProps, { login })(HeaderBook); 

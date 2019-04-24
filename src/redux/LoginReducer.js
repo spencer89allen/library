@@ -7,10 +7,9 @@ const initialState = {
 const LOGIN = 'LOGIN';
 
 //Section 3 - create action-creators
-export function login(value) {
+export function login() {
     return {
-        type: LOGIN,
-        payload: value,
+        type: LOGIN
     };
 };
 
@@ -18,7 +17,7 @@ export function login(value) {
 export default function loginReducer(state = initialState, action) {
     switch(action.type) {
         case LOGIN:
-            return Object.assign( {}, state, {value: !state})
+            return Object.assign( {}, state, {isLogin: !state.isLogin})
         default:
             return state;
     }

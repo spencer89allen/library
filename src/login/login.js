@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+ 
+import { login } from '../redux/LoginReducer';
 
 class Login extends Component {
 constructor (props) {
@@ -24,16 +27,18 @@ constructor (props) {
     }
 
     handleLogin = () => {
-console.log(this.state, this.state.username.length)
+    //console.log(this.state, this.state.username.length)
+    console.log(this.props)
         if (this.state.username.length === 0 || this.state.password.length === 0) {
-            console.log('Please fill in Username and Password input fields')
+            alert('Please fill in Username and Password input fields')
         } else {
 
             const { username, password } = this.state
             const body = { username, password }
 
             axios.post(`/auth/login`, body).then((res) => {
-                console.log(res)
+                //console.log(res)
+                this.props.login()
                 this.props.history.goBack()
             })
         }
@@ -127,4 +132,6 @@ console.log(this.state, this.state.username.length)
     }
 };
 
-export default Login;
+
+
+export default connect(null, { login })(Login);
