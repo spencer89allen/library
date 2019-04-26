@@ -18,10 +18,11 @@ class TwoAddBook extends Component {
         this.setState({
             [name]: value,
         })
-
+    
     }
 
     handlePost = () => {
+        console.log(this.props)
         const { coverImage, headerImage } = this.props
         const body = {
             coverImage: coverImage,
@@ -38,6 +39,8 @@ class TwoAddBook extends Component {
 
 
     render() {
+        console.log('2 state', this.state)
+        console.log('2 props', this.props)
         return (
             <div>
                 <div className='container'>
@@ -118,7 +121,7 @@ class TwoAddBook extends Component {
 };
 
 function mapStateToProps(state) {
-    return state
+    return state.AddBookReducer
 }
 
 export default connect(mapStateToProps)(TwoAddBook);

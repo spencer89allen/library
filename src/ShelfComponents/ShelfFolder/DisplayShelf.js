@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 function DisplayShelf(props) {
-    //console.log(props)
     const books = props.book.map(book => {
         return (
             

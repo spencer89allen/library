@@ -28,7 +28,7 @@ constructor (props) {
 
     handleLogin = () => {
     //console.log(this.state, this.state.username.length)
-    console.log(this.props)
+    //console.log(this.props)
         if (this.state.username.length === 0 || this.state.password.length === 0) {
             alert('Please fill in Username and Password input fields')
         } else {

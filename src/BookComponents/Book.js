@@ -37,7 +37,7 @@ class Book extends Component {
         
         return (
             <div>
-                <HeaderBook header={this.state.title} bookId={this.state.id} />
+                <HeaderBook header={this.state.title} bookId={this.state.id} image={this.state.headerImage}/>
                 <Report info={this.state.chapterInfo}/>
             </div>
         )

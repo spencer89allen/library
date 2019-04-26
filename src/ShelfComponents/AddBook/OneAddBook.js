@@ -21,6 +21,7 @@ class OneAddBook extends Component {
 
 
     render() {
+        console.log('1', this.state)
         return (
             <div className='container'>
                 <div className='field is-horizontal'>
@@ -73,8 +74,5 @@ class OneAddBook extends Component {
     }
 };
 
-function mapStateToProps(state) {
-    return state
-};
 
-export default connect(mapStateToProps, { addImages })(OneAddBook);
+export default connect(null, { addImages })(OneAddBook);

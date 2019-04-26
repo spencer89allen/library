@@ -6,9 +6,9 @@ import { login } from '/Users/spencerallen/projects/library/src/redux/LoginReduc
 
 
 function HeaderBook(props) {
-    //console.log(props)
+    //console.log('alsfjas;lfd', props)
     return (
-        <div>
+        <div className="container is-fullhd">
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to={`/`}>
@@ -19,36 +19,43 @@ function HeaderBook(props) {
                 </div>
                 <div className='navbar-end'>
                     <div className='navbar-item'>
-                        
-
                         {
-                            props.isLogin ? 
-                            (
-                                <Link to={`/book/${props.bookId}/chapter/new`}>
-                                    <p className='button is-primary'>
-                                        <strong>Add Chapter Summary</strong>
-                                    </p>
-                                </Link>
-                            )
-                            :
-                            (
-                                <Link to={`/login`}>
-                                    <p className='button is-primary'>
-                                        <strong>Login</strong>
-                                    </p>
-                                </Link>
-                            )
+                            props.isLogin ?
+                                (
+                                    <Link to={`/book/${props.bookId}/chapter/new`}>
+                                        <p className='button is-primary'>
+                                            <strong>Add Chapter Summary</strong>
+                                        </p>
+                                    </Link>
+                                )
+                                :
+                                (
+                                    <Link to={`/login`}>
+                                        <p className='button is-primary'>
+                                            <strong>Login</strong>
+                                        </p>
+                                    </Link>
+                                )
                         }
                     </div>
                 </div>
             </nav>
-            <section className="hero is-light is-medium">
+            <section className="hero is-medium" 
+                style={
+                    {
+                        backgroundImage:`url(${props.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                    }}>
                 <div className="hero-body">
                     <div className="container">
-                        <h1 className="title">
+                        <h1 className="title"
+                            style={{color:'white'}}>
                             {props.header}
                         </h1>
-                        <h2 className="subtitle">
+                        <h2 className="subtitle"
+                            style={{color:'white'}}>
                             Spencer's Notes
                         </h2>
                     </div>
