@@ -11,7 +11,7 @@ class TwoAddBook extends Component {
     state = {
         title: '',
         author: '',
-        pageCount: 0,
+        summary: '',
     }
 
     handleInput = (name, value) => {
@@ -29,7 +29,7 @@ class TwoAddBook extends Component {
             headerImage: headerImage,
             title: this.state.title,
             author: this.state.author,
-            pageCount: this.state.pageCount,
+            summary: this.state.summary,
         }
         axios.post(`/api/addBook`, body).then(() => {
             this.props.history.push('/')
@@ -39,8 +39,8 @@ class TwoAddBook extends Component {
 
 
     render() {
-        console.log('2 state', this.state)
-        console.log('2 props', this.props)
+        // console.log('2 state', this.state)
+        // console.log('2 props', this.props)
         return (
             <div>
                 <div className='container'>
@@ -80,17 +80,17 @@ class TwoAddBook extends Component {
                     </div>
                     <div className="field is-horizontal">
                         <div className="field-label is-normal">
-                            <label className="label">Page Count:</label>
+                            <label className="label">Summary:</label>
                         </div>
                         <div className="field-body">
                             <div className="field">
                                 <p className="control">
-                                    <input className="input"
-                                        placeholder="Number of pages in Book"
-                                        name='pageCount'
-                                        value={this.state.pageCount}
-                                        onChange={(e) => this.handleInput(e.target.name, e.target.value)}
-                                    />
+                                    <textarea className="textarea" 
+                                            placeholder="Maybe add the book cover summary"
+                                            name='summary'
+                                            value={this.state.summary}
+                                            onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                                            />
                                 </p>
                             </div>
                         </div>

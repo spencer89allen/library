@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { login } from '/Users/spencerallen/projects/library/src/redux/LoginReducer.js';
 
+import './HeaderBook.css';
 
 function HeaderBook(props) {
     //console.log('alsfjas;lfd', props)
@@ -22,18 +23,14 @@ function HeaderBook(props) {
                         {
                             props.isLogin ?
                                 (
-                                    <Link to={`/book/${props.bookId}/chapter/new`}>
-                                        <p className='button is-primary'>
-                                            <strong>Add Chapter Summary</strong>
-                                        </p>
+                                    <Link to={`/book/${props.bookId}/chapter/new`} className='button is-primary'>
+                                        <strong>Add Chapter Summary</strong>
                                     </Link>
                                 )
                                 :
                                 (
-                                    <Link to={`/login`}>
-                                        <p className='button is-primary'>
-                                            <strong>Login</strong>
-                                        </p>
+                                    <Link to={`/login`} className='button is-primary text-bold'>
+                                        Login
                                     </Link>
                                 )
                         }
@@ -50,12 +47,10 @@ function HeaderBook(props) {
                     }}>
                 <div className="hero-body">
                     <div className="container">
-                        <h1 className="title"
-                            style={{color:'white'}}>
+                        <h1 className="title">
                             {props.header}
                         </h1>
-                        <h2 className="subtitle"
-                            style={{color:'white'}}>
+                        <h2 className="subtitle">
                             Spencer's Notes
                         </h2>
                     </div>

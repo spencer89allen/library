@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom'
 
 function ChapterList(props) {
+    console.log()
+    
 
     const chapterTitle = props.info.map((chapter) => {
         return (
@@ -12,15 +14,19 @@ function ChapterList(props) {
             </div>
         )
     })
+    console.log(props.match.url)
 
     return (
 
         <div className='column is-3'>
             <aside className="menu ">
                 <p className="menu-label">
-                    Report Menu
+                    Menu
                 </p>
                 <ul className="menu-list">
+                    <Link to={props.match.url}>
+                        <h1>Summary</h1>
+                    </Link>
                     {chapterTitle}
 
                 </ul>

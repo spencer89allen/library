@@ -10,6 +10,7 @@ class Book extends Component {
         id: null,
         title: '',
         headerImage: '',
+        summary: '',
         chapterInfo: [],
     }
 
@@ -20,6 +21,7 @@ class Book extends Component {
                 id: this.props.match.params.book_id,
                 title: response.data[0].title,
                 headerImage: response.data[0].header_image,
+                summary: response.data[0].summary,
             })
         })
         this.getChapterInfo()
@@ -38,7 +40,7 @@ class Book extends Component {
         return (
             <div>
                 <HeaderBook header={this.state.title} bookId={this.state.id} image={this.state.headerImage}/>
-                <Report info={this.state.chapterInfo}/>
+                <Report info={this.state.chapterInfo} summary={this.state.summary}/>
             </div>
         )
     };

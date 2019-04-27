@@ -5,5 +5,5 @@ CREATE TABLE books (
     header_image TEXT,
     title TEXT,
     author TEXT,
-    page_count INTEGER
+    summary TEXT
 )

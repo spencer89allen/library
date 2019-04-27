@@ -2,11 +2,23 @@
 module.exports = {
 
     addBook: (req, res) => {
+        if (!req.isAuthenticated()) {
+            return res.status(401).send({ message: 'You must be logged in to add a book' })
+        }
 
-        const { coverImage, headerImage, title, author, pageCount } = req.body
+        const { coverImage, headerImage, title, author, summary } = req.body
         const dbInstance = req.app.get('db')
 
-        dbInstance.add_book_to_shelf([coverImage, headerImage, title, author, pageCount]).then((response) => {
+        const userId = req.user.id;
+
+        dbInstance.add_book_to_shelf({
+            coverImage,
+            headerImage,
+            title,
+            author,
+            summary,
+            userId,
+        }).then((response) => {
             console.log(res);
             res.status(200).send('A new book has been added')
         }).catch((err) => {
