@@ -10,16 +10,16 @@ function DisplayShelf(props) {
                 {/* <p className="title">
                         <strong>{book.title}</strong>
                     </p> */}
-                <img src={book.cover_image}
-                    alt="nothing to display"
-                    className="image"
-                />
-                <p className="subtitle">
+
+                {/* <p className="subtitle">
                     By {book.author}
-                </p>
-                <div className="level buttons are-small">
+                </p> */}
+                <div className="level buttons are-small is-focused">
                     <Link to={`/book/${book.id}`}>
-                        <button className='button level-left'>Read</button>
+                        <img src={book.cover_image}
+                            alt="nothing to display"
+                            className="image"
+                        />
                     </Link>
                     {
                         props.isLogin ?

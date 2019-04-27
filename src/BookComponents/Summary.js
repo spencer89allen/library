@@ -10,7 +10,9 @@ function Summary(props) {
 
     return (
         <div className='column is-9 '>
-            Summary
+            <p className="menu-label">
+                Summary
+            </p>
             <h2>{props.summary}</h2>
         </div>
     )

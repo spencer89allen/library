@@ -23,8 +23,6 @@ function Header(props) {
                 <div className='navbar-end'>
                     <div className='navbar-item'>
                         <strong>
-
-
                             {props.isLogin ?
                                 (
                                     <Link to='addBook/step1'>
@@ -52,7 +50,12 @@ function Header(props) {
                     <div className="container">
                         
                         <h1 className="title "
-                            style={{color:'white'}}>
+                            style={
+                                {
+                                    color:'white',
+                                    textShadow:'0 1px 3px #0008'
+                                }
+                            }>
                             Spencer's Library
                         </h1>
                         <h2 className="subtitle"

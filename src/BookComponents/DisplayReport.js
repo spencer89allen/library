@@ -24,7 +24,9 @@ function DisplayReport(props) {
 
     return (
         <div className='column is-9 '>
-            Book Report
+            <p className="menu-label">
+                Chapter Notes
+            </p>
             <h2>{notes}</h2>
         </div>
     )

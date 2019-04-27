@@ -40,6 +40,7 @@ class Book extends Component {
         return (
             <div>
                 <HeaderBook header={this.state.title} bookId={this.state.id} image={this.state.headerImage}/>
+                <br />
                 <Report info={this.state.chapterInfo} summary={this.state.summary}/>
             </div>
         )

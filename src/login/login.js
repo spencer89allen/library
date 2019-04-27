@@ -109,6 +109,7 @@ constructor (props) {
                                 <div className='field'>
                                     <p className='control'>
                                         <input className='input'
+                                            type='password'
                                             placeholder='Password'
                                             name='password'
                                             value={this.state.password}
