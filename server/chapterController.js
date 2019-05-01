@@ -35,4 +35,19 @@ module.exports = {
             res.status(500).send('Something went wrong getting the chapter info from the database')
         })
     },
+
+    deleteChapter : (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { id } = req.params;
+
+        dbInstance.delete_chapter([id]).then((chapters) => {
+            return dbInstance.get_chapter_list([chapters[0].book_id])
+        })
+        .then((chapters) => {
+            res.status(200).send(chapters)
+        }).catch((err) => {
+            res.status(409).send({errMessage: 'For some reason the chapter was not deleted.'})
+                console.log(err)
+        })
+    }
 }

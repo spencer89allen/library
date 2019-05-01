@@ -34,6 +34,15 @@ class Book extends Component {
             }) 
         })
     }
+
+    deleteChapter = (id) => {
+        axios.delete(`/api/deleteChapter/${id}`).then(response => {
+            this.setState({
+                chapterInfo: response.data
+            })
+        })
+        
+    }
     
     render() {
         
@@ -41,7 +50,7 @@ class Book extends Component {
             <div>
                 <HeaderBook header={this.state.title} bookId={this.state.id} image={this.state.headerImage}/>
                 <br />
-                <Report info={this.state.chapterInfo} summary={this.state.summary}/>
+                <Report info={this.state.chapterInfo} summary={this.state.summary} delete={this.deleteChapter}/>
             </div>
         )
     };

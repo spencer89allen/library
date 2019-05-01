@@ -12,13 +12,25 @@ class Report extends Component {
 
 
     render() {
+
+        // console.log(this.props.delete)
         
         return (
             <div className='container is-fluid'>
                 <div className='columns'>
                     <ChapterList info={this.props.info} />
-                    <Route path={this.props.match.path} exact render={() => < Summary summary={this.props.summary}/> } />
-                    <Route path={`${this.props.match.path}/chapter/:chapter_id`} render={() => < DisplayReport info={this.props.info}/> } />
+                    
+                    <Route
+                        path={this.props.match.path}
+                        exact
+                        render={() => <Summary summary={this.props.summary}/> } />
+                    <Route
+                        path={`${this.props.match.path}/chapter/:chapter_id`} 
+                        render={ () => 
+                            <DisplayReport 
+                                info={this.props.info} 
+                                delete={this.props.delete} />
+                        } />
                 </div>
             </div>
         )

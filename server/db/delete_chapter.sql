@@ -1,0 +1,3 @@
+DELETE FROM chapters
+WHERE id = $1
+RETURNING *;

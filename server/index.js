@@ -98,6 +98,7 @@ app.get(`/api/getBook/:id`, shelfCtrl.getBook)
 app.get(`/api/bookInfo/:id`, chapterCtrl.bookInfo)
 app.get(`/api/getChapterList/:id`, chapterCtrl.getChapterList)
 app.post(`/api/newChapterNotes`, chapterCtrl.postChapterInfo)
+app.delete(`/api/deleteChapter/:id`, chapterCtrl.deleteChapter)
 
 //auth endpoints
 app.post('/auth/login', passport.authenticate( 'login' ), (req, res) => {

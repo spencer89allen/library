@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 function ChapterList(props) {
     console.log()
-    
+
 
     const chapterTitle = props.info.map((chapter) => {
         return (
@@ -14,7 +14,7 @@ function ChapterList(props) {
             </div>
         )
     })
-    console.log(props.match.url)
+    //console.log(props.match.url)
 
     return (
 
@@ -28,7 +28,6 @@ function ChapterList(props) {
                         <h1>Summary</h1>
                     </Link>
                     {chapterTitle}
-
                 </ul>
             </aside>
         </div>
