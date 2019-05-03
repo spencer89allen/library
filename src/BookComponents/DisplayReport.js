@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import EditBookModal from './EditBook/EditBookModal';
+
 
 function DisplayReport(props) {
 
@@ -29,8 +31,8 @@ function DisplayReport(props) {
     }
 
     //console.log(report)
-    console.log(props)
-    console.log(id)
+    //console.log(props.match)
+    // console.log(id)
 
     return (
         <div className='column is-9 '>
@@ -43,17 +45,25 @@ function DisplayReport(props) {
             {props.isLogin ?
                 (
                     <div className='buttons are-small has-addons is-right'>
-                        <span className='button'>Edit</span>
+                        <span className='button' onClick={() => props.toggleEdit()}>Edit</span>
                         <span className='button' onClick={() => props.delete(id)}>Delete</span>
                     </div>
+                    
                 )
                 :
-                (
-                    <div></div>
-                )
+                
+                    null
+                
 
             }
+            {
+                props.showModal ? <EditBookModal toggleEdit={props.toggleEdit}/>
 
+                :
+
+                null
+            }
+        
         </div>
     )
 };

@@ -13,24 +13,42 @@ class Report extends Component {
 
     render() {
 
-        // console.log(this.props.delete)
-        
+        //console.log(this.props.match, this.props.info[0])
+
         return (
             <div className='container is-fluid'>
                 <div className='columns'>
                     <ChapterList info={this.props.info} />
-                    
+
                     <Route
                         path={this.props.match.path}
                         exact
-                        render={() => <Summary summary={this.props.summary}/> } />
+                        render={() => <Summary summary={this.props.summary} />} 
+                    />
                     <Route
-                        path={`${this.props.match.path}/chapter/:chapter_id`} 
-                        render={ () => 
-                            <DisplayReport 
-                                info={this.props.info} 
-                                delete={this.props.delete} />
-                        } />
+                        path={`${this.props.match.path}/chapter/:chapter_id`}
+                        render={() => {
+                            return !this.props.info[0] ? 
+
+                                (
+                                    <Summary summary={this.props.summary} />
+                                )
+                            : this.props.info[0].id ?
+                        
+                                (
+                                <DisplayReport
+                                    info={this.props.info}
+                                    delete={this.props.delete}
+                                    toggleEdit={this.props.toggleEdit}
+                                    showModal={this.props.showModal}
+                                />
+                            )
+                            : 
+                            <Summary summary={this.props.summary} />
+                            
+                                }
+                        } 
+                    />
                 </div>
             </div>
         )

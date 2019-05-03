@@ -12,6 +12,7 @@ class Book extends Component {
         headerImage: '',
         summary: '',
         chapterInfo: [],
+        showModal: false,
     }
 
 
@@ -43,14 +44,29 @@ class Book extends Component {
         })
         
     }
+
+    toggleEdit = () => {
+        this.setState({
+            showModal: !this.state.showModal,
+        })
+    }
+
     
     render() {
         
         return (
             <div>
-                <HeaderBook header={this.state.title} bookId={this.state.id} image={this.state.headerImage}/>
+                <HeaderBook header={this.state.title} 
+                            bookId={this.state.id} 
+                            image={this.state.headerImage}
+                />
                 <br />
-                <Report info={this.state.chapterInfo} summary={this.state.summary} delete={this.deleteChapter}/>
+                <Report info={this.state.chapterInfo} 
+                        summary={this.state.summary} 
+                        delete={this.deleteChapter}
+                        toggleEdit={this.toggleEdit}
+                        showModal={this.state.showModal}
+                />
             </div>
         )
     };

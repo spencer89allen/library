@@ -2,14 +2,14 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom'
 
 function ChapterList(props) {
-    console.log()
-
+    
+    //console.log(props.info)
 
     const chapterTitle = props.info.map((chapter) => {
         return (
             <div key={chapter.id}>
                 <Link to={`${props.match.url}/chapter/${chapter.id}`}>
-                    <h1>{chapter.chapter_title}</h1>
+                    <h1>{chapter.chapter_title}: {chapter.chapter_number}</h1>
                 </Link>
             </div>
         )
