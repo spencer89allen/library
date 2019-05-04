@@ -37,7 +37,7 @@ function DisplayReport(props) {
     return (
         <div className='column is-9 '>
             <p className="menu-label">
-                Chapter Notes
+                {report.chapter_title} Notes
             </p>
             <h2>{notes}</h2>
             <br />
@@ -57,7 +57,7 @@ function DisplayReport(props) {
 
             }
             {
-                props.showModal ? <EditBookModal toggleEdit={props.toggleEdit}/>
+                props.showModal ? <EditBookModal toggleEdit={props.toggleEdit} chapterInfo={report} updateBook={props.updateBook}/>
 
                 :
 

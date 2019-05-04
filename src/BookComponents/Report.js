@@ -11,9 +11,9 @@ class Report extends Component {
 
 
 
+
     render() {
 
-        //console.log(this.props.match, this.props.info[0])
 
         return (
             <div className='container is-fluid'>
@@ -41,6 +41,7 @@ class Report extends Component {
                                     delete={this.props.delete}
                                     toggleEdit={this.props.toggleEdit}
                                     showModal={this.props.showModal}
+                                    updateBook={this.props.updateBook}
                                 />
                             )
                             : 

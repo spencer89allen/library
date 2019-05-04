@@ -86,6 +86,7 @@ passport.deserializeUser(( id, done ) => {
 
 
 //ENDPOINTS
+//always lead with a dash!
 //shelf endpoints
 app.post(`/api/addBook`, shelfCtrl.addBook)
 app.get(`/api/getBooks`, shelfCtrl.getBooks)
@@ -99,6 +100,7 @@ app.get(`/api/bookInfo/:id`, chapterCtrl.bookInfo)
 app.get(`/api/getChapterList/:id`, chapterCtrl.getChapterList)
 app.post(`/api/newChapterNotes`, chapterCtrl.postChapterInfo)
 app.delete(`/api/deleteChapter/:id`, chapterCtrl.deleteChapter)
+app.put(`/api/editChapter`, chapterCtrl.editChapter)
 
 //auth endpoints
 app.post('/auth/login', passport.authenticate( 'login' ), (req, res) => {

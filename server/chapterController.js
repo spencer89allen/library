@@ -49,5 +49,17 @@ module.exports = {
             res.status(409).send({errMessage: 'For some reason the chapter was not deleted.'})
                 console.log(err)
         })
-    }
+    },
+
+    editChapter: (req, res) => {
+        const dbInstance = req.app.get('db');
+        const { chapter_id, chapter_number, chapter_title, chapter_notes } = req.body
+
+        dbInstance.edit_chapter([chapter_id, chapter_number, chapter_title, chapter_notes]).then(chapter => {
+            res.status(200).send(chapter)
+        }).catch(err => {
+            console.log(err)
+            res.status(500).send('Something went wrong editing the chapter info')
+        })
+    },
 }

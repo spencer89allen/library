@@ -5,14 +5,16 @@ import HeaderBook from './HeaderBook';
 import Report from './Report';
 
 class Book extends Component {
-
-    state = {
-        id: null,
-        title: '',
-        headerImage: '',
-        summary: '',
-        chapterInfo: [],
-        showModal: false,
+    constructor(props) {
+        super(props)
+        this.state = {
+            id: null,
+            title: '',
+            headerImage: '',
+            summary: '',
+            chapterInfo: [],
+            showModal: false,
+        }
     }
 
 
@@ -66,6 +68,7 @@ class Book extends Component {
                         delete={this.deleteChapter}
                         toggleEdit={this.toggleEdit}
                         showModal={this.state.showModal}
+                        updateBook={this.getChapterInfo}
                 />
             </div>
         )
