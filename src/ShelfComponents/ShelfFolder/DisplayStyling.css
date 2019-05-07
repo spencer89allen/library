@@ -25,7 +25,8 @@
 }
 
 .bookCover:hover {
-	box-shadow: 5px 10px 8px 10px #888888;
+	box-shadow: 5px 6px 6px 8px #888888;
+	width: 18vw;
 	
 }
 

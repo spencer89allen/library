@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import HeaderBook from './HeaderBook';
 import Report from './Report';
+import Footer from '/Users/spencerallen/projects/library/src/Footer.js'
 
 class Book extends Component {
     constructor(props) {
@@ -70,6 +71,7 @@ class Book extends Component {
                         showModal={this.state.showModal}
                         updateBook={this.getChapterInfo}
                 />
+                <Footer />
             </div>
         )
     };

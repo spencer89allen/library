@@ -29,7 +29,7 @@ class NewChapter extends Component {
         this.setState({
             [name]: value,
         })
-        console.log(this.state.title)
+        //console.log(this.state.title)
     }
 
     handlePostChapterNotes = () => {

@@ -25,19 +25,34 @@ function Header(props) {
                         <strong>
                             {props.isLogin ?
                                 (
-                                    <Link to='addBook/step1'>
-                                        <p className='button is-info'>
-                                            <strong>Add New Book</strong>
-                                        </p>
-                                    </Link>
+                                    <div>
+                                        <span className="button is-warning is-outlined">
+                                            <Link to=''>
+                                                <p>
+                                                    <strong>Log Out</strong>
+                                                </p>
+                                            </Link>
+                                        </span>
+                                    </div>
                                 )
                                 :
                                 (
-                                    <Link to='/login'>
-                                        <p className='button is-info'>
-                                            <strong>Login</strong>
-                                        </p>
-                                    </Link>
+                                    <div className='buttons has-addons is-right'>
+                                        <span className="button is-info is-outlined">
+                                            <Link to='/login'>
+                                                <p>
+                                                    <strong>Login</strong>
+                                                </p>
+                                            </Link>
+                                        </span>
+                                        <span className="button is-info is-outlined">
+                                            <Link to='/login'>
+                                                <p>
+                                                    <strong>New User</strong>
+                                                </p>
+                                            </Link>
+                                        </span>
+                                    </div>
                                 )
                             }
                         </strong>
@@ -46,27 +61,51 @@ function Header(props) {
             </nav>
             <section className="hero heroHeader is-medium ">
                 <div className="hero-body">
-                    
+
                     <div className="container">
-                        
+
                         <h1 className="title "
                             style={
                                 {
-                                    color:'white',
-                                    textShadow:'0 1px 3px #0008'
+                                    color: 'white',
+                                    textShadow: '0 1px 3px #0008'
                                 }
                             }>
                             Spencer's Library
                         </h1>
                         <h2 className="subtitle"
-                            style={{color:'white'}}>
+                            style={{ color: 'white' }}>
                             Book Summaries
                         </h2>
-                        
                     </div>
                 </div>
             </section>
+            <nav className="level">
+                <div className='navbar-end'>
+                    <div className='navbar-item'>
+                        <strong>
+                            {props.isLogin ?
+                                (
+                                    <div className='buttons is right'>
+                                        <span>
+                                            <Link to='addBook/step1'>
+                                                <p className='button is-info'>
+                                                    <strong>Add New Book</strong>
+                                                </p>
+                                            </Link>
+                                        </span>
+                                    </div>
+                                )
+                                :
+                                (
+                                    null
 
+                                )
+                            }
+                        </strong>
+                    </div>
+                </div>
+            </nav>
         </div>
     )
 };

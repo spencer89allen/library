@@ -10,7 +10,7 @@ function HeaderBook(props) {
     //console.log('alsfjas;lfd', props)
     return (
         <div className="container is-fullhd">
-        <br />
+            <br />
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to={`/`}>
@@ -24,9 +24,15 @@ function HeaderBook(props) {
                         {
                             props.isLogin ?
                                 (
-                                    <Link to={`/book/${props.bookId}/chapter/new`} className='button is-primary'>
-                                        <strong>Add Chapter Summary</strong>
-                                    </Link>
+                                    <div>
+                                        <span className="button is-warning is-outlined">
+                                            <Link to=''>
+                                                <p>
+                                                    <strong>Log Out</strong>
+                                                </p>
+                                            </Link>
+                                        </span>
+                                    </div>
                                 )
                                 :
                                 (
@@ -38,10 +44,10 @@ function HeaderBook(props) {
                     </div>
                 </div>
             </nav>
-            <section className="hero is-medium" 
+            <section className="hero is-medium"
                 style={
                     {
-                        backgroundImage:`url(${props.image})`,
+                        backgroundImage: `url(${props.image})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat'
@@ -57,6 +63,30 @@ function HeaderBook(props) {
                     </div>
                 </div>
             </section>
+            <nav className="level">
+                <div className='navbar-end'>
+                    <div className='navbar-item'>
+                        <strong>
+                            {props.isLogin ?
+                                (
+                                    <div className='buttons is right'>
+                                        <span>
+                                            <Link to={`/book/${props.bookId}/chapter/new`} className='button is-primary'>
+                                                <strong>Add Chapter Summary</strong>
+                                            </Link>
+                                        </span>
+                                    </div>
+                                )
+                                :
+                                (
+                                    null
+
+                                )
+                            }
+                        </strong>
+                    </div>
+                </div>
+            </nav>
         </div>
     )
 };

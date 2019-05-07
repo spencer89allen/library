@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Header from '../Header';
 import DisplayShelf from './DisplayShelf';
+import Footer from '/Users/spencerallen/projects/library/src/Footer.js'
 import './DisplayStyling.css';
 
 
@@ -42,6 +43,7 @@ class Shelf extends Component {
                     delete={this.handleDeleteBook} 
                     bookId={this.state.bookList.id}
                     />
+                <Footer />
             </div>
         )
     }
