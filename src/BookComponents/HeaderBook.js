@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+
 import { login } from '/Users/spencerallen/projects/library/src/redux/LoginReducer.js';
+import { logOut } from '../redux/LoginReducer';
 
 import './HeaderBook.css';
 
 function HeaderBook(props) {
-    //console.log('alsfjas;lfd', props)
+    
+
+    console.log(props)
+
     return (
         <div className="container is-fullhd">
             <br />
@@ -25,12 +30,13 @@ function HeaderBook(props) {
                             props.isLogin ?
                                 (
                                     <div>
-                                        <span className="button is-warning is-outlined">
-                                            <Link to=''>
+                                        <span className="button is-warning is-outlined"
+                                            onClick={() => props.logout()}>
+                                            
                                                 <p>
                                                     <strong>Log Out</strong>
                                                 </p>
-                                            </Link>
+                                            
                                         </span>
                                     </div>
                                 )
@@ -97,4 +103,4 @@ function mapStateToProps(state) {
     }
 };
 
-export default connect(mapStateToProps, { login })(HeaderBook); 
+export default connect(mapStateToProps, { login, logOut })(HeaderBook); 

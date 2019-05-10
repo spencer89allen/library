@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+ 
+import { logOut } from '../redux/LoginReducer';
 
 import HeaderBook from './HeaderBook';
 import Report from './Report';
@@ -54,6 +57,12 @@ class Book extends Component {
         })
     }
 
+    handleLogout = () => {
+        axios.get(`/auth/logout`).then((res) => {
+            this.props.logOut()
+        })
+    };
+
     
     render() {
         
@@ -62,6 +71,7 @@ class Book extends Component {
                 <HeaderBook header={this.state.title} 
                             bookId={this.state.id} 
                             image={this.state.headerImage}
+                            logout={this.handleLogout}
                 />
                 <br />
                 <Report info={this.state.chapterInfo} 
@@ -71,10 +81,12 @@ class Book extends Component {
                         showModal={this.state.showModal}
                         updateBook={this.getChapterInfo}
                 />
+                <br />
+                <br />
                 <Footer />
             </div>
         )
     };
 };
 
-export default Book;
+export default connect(null, { logOut })(Book);

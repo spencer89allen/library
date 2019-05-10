@@ -26,12 +26,12 @@ function Header(props) {
                             {props.isLogin ?
                                 (
                                     <div>
-                                        <span className="button is-warning is-outlined">
-                                            <Link to=''>
+                                        <span className="button is-warning is-outlined" onClick={() => props.logOut()}>
+                                            
                                                 <p>
                                                     <strong>Log Out</strong>
                                                 </p>
-                                            </Link>
+                                            
                                         </span>
                                     </div>
                                 )
@@ -42,13 +42,6 @@ function Header(props) {
                                             <Link to='/login'>
                                                 <p>
                                                     <strong>Login</strong>
-                                                </p>
-                                            </Link>
-                                        </span>
-                                        <span className="button is-info is-outlined">
-                                            <Link to='/login'>
-                                                <p>
-                                                    <strong>New User</strong>
                                                 </p>
                                             </Link>
                                         </span>

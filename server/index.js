@@ -54,6 +54,7 @@ passport.use( 'login', new LocalStrategy( function ( username, password, done ) 
     })
 }));
 
+//we're not using this right now
 passport.use( 'register', new LocalStrategy ( function ( username, password, done ) {
     if ( username.length === 0 || password.length === 0 ) {
         return done( null, false, { message: 'Username and Password are required' } );
@@ -76,6 +77,8 @@ passport.use( 'register', new LocalStrategy ( function ( username, password, don
     })
 }));
 
+
+
 passport.serializeUser(( user, done ) => {
     done( null, user );
 });
@@ -86,7 +89,7 @@ passport.deserializeUser(( id, done ) => {
 
 
 //ENDPOINTS
-//always lead with a dash!
+//always lead with a slash!
 //shelf endpoints
 app.post(`/api/addBook`, shelfCtrl.addBook)
 app.get(`/api/getBooks`, shelfCtrl.getBooks)
@@ -110,6 +113,10 @@ app.post('/auth/login', passport.authenticate( 'login' ), (req, res) => {
 app.post('/auth/register', passport.authenticate('register'), (req, res) => {
     const { user } = req;
     res.send(user);
+});
+app.get('/auth/logout', (req, res) => {
+    req.logout();
+    res.status(200).send({message: 'User is logged out'})
 });
 
 //SERVER LISTINING

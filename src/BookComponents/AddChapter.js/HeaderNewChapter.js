@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function HeaderNewChapter(props) {
     return (
-        <div>
+        <div className="container is-fullhd">
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to={`/`}>

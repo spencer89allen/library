@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+ 
+import { logOut } from '../../redux/LoginReducer';
 
 import Header from '../Header';
 import DisplayShelf from './DisplayShelf';
@@ -35,10 +38,16 @@ class Shelf extends Component {
         })
     };
 
+    handleLogout = () => {
+        axios.get(`/auth/logout`).then((res) => {
+            this.props.logOut()
+        })
+    };
+
     render() {
         return (
             <div>
-                <Header />
+                <Header logOut={this.handleLogout}/>
                 <DisplayShelf book={this.state.bookList}
                     delete={this.handleDeleteBook} 
                     bookId={this.state.bookList.id}
@@ -49,4 +58,4 @@ class Shelf extends Component {
     }
 };
 
-export default Shelf;
+export default connect(null, { logOut })(Shelf);

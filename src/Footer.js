@@ -7,10 +7,10 @@ class Footer extends Component {
 
         return (
             <div>
-                <footer class="footer">
-                    <div class="content has-text-centered">
+                <footer className="footer">
+                    <div className="content has-text-centered">
                         <p>
-                            This is the footer for Spencer's Website.
+                            This is the footer for Spencer's Website. Its not exactly done.
                         </p>
                     </div>
                 </footer>
