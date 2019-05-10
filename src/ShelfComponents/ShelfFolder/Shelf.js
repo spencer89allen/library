@@ -15,6 +15,7 @@ class Shelf extends Component {
 
     state = {
         bookList: [],
+        showModal: false,
     }
 
     componentDidMount() {
@@ -44,6 +45,12 @@ class Shelf extends Component {
         })
     };
 
+    toggleDeleteBook = () => {
+        this.setState({
+            showModal: !this.state.showModal,
+        })
+    }
+
     render() {
         return (
             <div>
@@ -51,6 +58,8 @@ class Shelf extends Component {
                 <DisplayShelf book={this.state.bookList}
                     delete={this.handleDeleteBook} 
                     bookId={this.state.bookList.id}
+                    toggleDeleteBook={this.toggleDeleteBook}
+                    showModal={this.state.showModal}
                     />
                 <Footer />
             </div>

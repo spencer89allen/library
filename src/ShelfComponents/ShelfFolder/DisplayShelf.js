@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import DeleteBookModal from './DeleteBookModal';
+
 function DisplayShelf(props) {
+    console.log(props)
     const books = props.book.map(book => {
         return (
 
@@ -20,7 +23,10 @@ function DisplayShelf(props) {
                     {
                         props.user ?
                             (
-                                <div className="button level-right is-danger is-outlined" onClick={() => props.delete(book.id)}>
+                                // <div className="button level-right is-danger is-outlined" onClick={() => props.delete(book.id)}>
+                                //     Remove
+                                // </div>
+                                <div className="button level-right is-danger is-outlined" onClick={() => props.toggleDeleteBook()}>
                                     Remove
                                 </div>
                             )
@@ -29,9 +35,21 @@ function DisplayShelf(props) {
                                 null
                             )
                     }
+                    {
+                        props.showModal ? <DeleteBookModal 
+                                                    info={props.book}
+                                                    delete={props.delete} 
+                                                    toggleDeleteBook={props.toggleDeleteBook}
+                                            />
+
+                        :
+
+                        null
+                            
+                    }
                 </div>
             </div>
-
+            
         )
     })
     return (
