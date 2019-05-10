@@ -63,16 +63,19 @@ passport.use( 'register', new LocalStrategy ( function ( username, password, don
     const dbInstance = app.get( 'db' )
     const hashedPassword = bcrypt.hashSync( password, 15 );
 
-    dbInstance.users.find( { username } ).then( userInfo => {
+    dbInstance.users.find( { username } )
+    .then( userInfo => {
         if( userInfo.length > 0) {
             return done( null, false, { message: "Username is not available" });
         }
         return dbInstance.add_new_user( [ username, hashedPassword ] );
-    }).then( user  => {
+    })
+    .then( user  => {
         const newUser = user[0];
         delete newUser.password;
         done( null, newUser );
-    }).catch( error => {
+    })
+    .catch( error => {
         console.log(error.message)
     })
 }));
@@ -80,11 +83,24 @@ passport.use( 'register', new LocalStrategy ( function ( username, password, don
 
 
 passport.serializeUser(( user, done ) => {
-    done( null, user );
+    done( null, user.id );
 });
 
 passport.deserializeUser(( id, done ) => {
-    done( null, id );
+    const dbInstance = app.get('db')
+    
+    dbInstance.users.find( id )
+        .then( user => {
+            if(!user) {
+                return done(null, undefined)
+            }
+            delete user.password
+            return done(null, user)
+        })
+        .catch(err => {
+            console.log(err)
+            done('System failure');
+        });
 });
 
 
@@ -116,8 +132,15 @@ app.post('/auth/register', passport.authenticate('register'), (req, res) => {
 });
 app.get('/auth/logout', (req, res) => {
     req.logout();
-    res.status(200).send({message: 'User is logged out'})
+    res.sendStatus(204)
 });
+app.get('/api/me', (req, res) => {
+    if(!req.isAuthenticated()) {
+        return res.send(null)
+    }
+
+    res.send(req.user)
+})
 
 //SERVER LISTINING
 var port = process.env.PORT || 4545;

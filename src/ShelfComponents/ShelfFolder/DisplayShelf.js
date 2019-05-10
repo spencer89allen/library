@@ -18,7 +18,7 @@ function DisplayShelf(props) {
                     </div>
                     <br />
                     {
-                        props.isLogin ?
+                        props.user ?
                             (
                                 <div className="button level-right is-danger is-outlined" onClick={() => props.delete(book.id)}>
                                     Remove
@@ -43,7 +43,7 @@ function DisplayShelf(props) {
 
 function mapStateToProps(state) {
     return {
-        isLogin: state.LoginReducer.isLogin
+        user: state.LoginReducer.user
     }
 };
 

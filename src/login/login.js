@@ -38,7 +38,7 @@ constructor (props) {
 
             axios.post(`/auth/login`, body).then((res) => {
                 //console.log(res)
-                this.props.login()
+                this.props.login(res.data)
                 this.props.history.goBack()
             })
         }

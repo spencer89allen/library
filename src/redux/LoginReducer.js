@@ -1,6 +1,6 @@
 //Section 1 - create initial state forr the counter reducer
 const initialState = {
-    isLogin: false,
+    user: null,
 }
 
 //Section 2 - create action types
@@ -8,9 +8,10 @@ const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
 //Section 3 - create action-creators
-export function login() {
+export function login(user) {
     return {
-        type: LOGIN
+        type: LOGIN,
+        payload: user,
     };
 };
 
@@ -24,9 +25,9 @@ export function logOut() {
 export default function loginReducer(state = initialState, action) {
     switch(action.type) {
         case LOGIN:
-            return Object.assign( {}, state, {isLogin: !state.isLogin});
+            return Object.assign( {}, state, {user: action.payload});
         case LOGOUT:
-            return Object.assign( {}, state, {isLogin: false})
+            return Object.assign( {}, state, {user: null})
         default:
             return state;
     }

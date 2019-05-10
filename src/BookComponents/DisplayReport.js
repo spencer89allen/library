@@ -42,7 +42,7 @@ function DisplayReport(props) {
             <h2>{notes}</h2>
             <br />
             <br />
-            {props.isLogin ?
+            {props.user ?
                 (
                     <div className='buttons are-small has-addons is-right'>
                         <span className='button' onClick={() => props.toggleEdit()}>Edit</span>
@@ -70,7 +70,7 @@ function DisplayReport(props) {
 
 function mapStateToProps(state) {
     return {
-        isLogin: state.LoginReducer.isLogin
+        user: state.LoginReducer.user
     }
 };
 

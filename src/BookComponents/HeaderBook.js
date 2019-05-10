@@ -27,7 +27,7 @@ function HeaderBook(props) {
                 <div className='navbar-end'>
                     <div className='navbar-item'>
                         {
-                            props.isLogin ?
+                            props.user ?
                                 (
                                     <div>
                                         <span className="button is-warning is-outlined"
@@ -73,7 +73,7 @@ function HeaderBook(props) {
                 <div className='navbar-end'>
                     <div className='navbar-item'>
                         <strong>
-                            {props.isLogin ?
+                            {props.user ?
                                 (
                                     <div className='buttons is right'>
                                         <span>
@@ -99,7 +99,7 @@ function HeaderBook(props) {
 
 function mapStateToProps(state) {
     return {
-        isLogin: state.LoginReducer.isLogin,
+        user: state.LoginReducer.user,
     }
 };
 

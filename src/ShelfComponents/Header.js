@@ -23,7 +23,7 @@ function Header(props) {
                 <div className='navbar-end'>
                     <div className='navbar-item'>
                         <strong>
-                            {props.isLogin ?
+                            {props.user ?
                                 (
                                     <div>
                                         <span className="button is-warning is-outlined" onClick={() => props.logOut()}>
@@ -77,7 +77,7 @@ function Header(props) {
                 <div className='navbar-end'>
                     <div className='navbar-item'>
                         <strong>
-                            {props.isLogin ?
+                            {props.user ?
                                 (
                                     <div className='buttons is right'>
                                         <span>
@@ -105,7 +105,7 @@ function Header(props) {
 
 function mapStateToProps(state) {
     return {
-        isLogin: state.LoginReducer.isLogin
+        user: state.LoginReducer.user
     }
 };
 
