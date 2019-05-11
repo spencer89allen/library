@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import HeaderNewChapter from './HeaderNewChapter';
+import DontForgetModal from '../../ShelfComponents/AddBook/DontForgetModal';
 
 class NewChapter extends Component {
 
@@ -11,6 +12,7 @@ class NewChapter extends Component {
         number: '',
         title: '',
         notes: '',
+        showModal: false,
     }
 
 
@@ -40,6 +42,12 @@ class NewChapter extends Component {
             this.props.history.push(`/book/${id}`)
         })
 
+    }
+
+    toggleModal = () => {
+        this.setState({
+            showModal: !this.state.showModal
+        })
     }
 
     render() {
@@ -103,11 +111,33 @@ class NewChapter extends Component {
                         </div>
                     </div>
                     <div className='level-right'>
-                        <p className='button is-link is-outlined' onClick={() => this.handlePostChapterNotes()}>
-                            <strong>Post</strong>
-                        </p>
+
+                        {
+                            this.state.bookTitle && this.state.number && this.state.notes ?
+
+                            <p className='button is-link is-outlined' onClick={() => this.handlePostChapterNotes()}>
+                                <strong>Post</strong>
+                            </p>
+
+                            :
+
+                            <p className='button is-link is-outlined' onClick={() => this.toggleModal()}>
+                                <strong>Post</strong>
+                            </p>
+                        }
+                        
                     </div>
                 </div>
+                    {
+                        this.state.showModal ?
+
+                        <DontForgetModal showModal={this.toggleModal}/>
+
+                        :
+
+                        null
+                    
+                    }
             </div>
         )
     }

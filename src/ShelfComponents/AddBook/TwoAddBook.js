@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import DontForgetModal from './DontForgetModal';
+
+
 
 
 
@@ -107,13 +110,36 @@ class TwoAddBook extends Component {
                             </p>
                         </div>
                         <div className="level-right">
-                            <span className="button is-link is-hovered" onClick={() => this.handlePost()}>
-                                <strong>
-                                    Add New Book
-                                </strong>
-                            </span>
+
+                            {
+                                this.state.title && this.state.author && this.state.summary ?
+
+                                <span className="button is-link is-hovered" onClick={() => this.handlePost()}>
+                                    <strong>
+                                        Add New Book
+                                    </strong>
+                                </span>
+                                        
+                                :
+
+                                <span className="button is-link is-hovered" onClick={() => this.props.showModal()}>
+                                    <strong>
+                                        Add New Book
+                                    </strong>
+                                </span>
+                            }
                         </div>
                     </div>
+                    {
+                        this.props.showModalState ?
+
+                        <DontForgetModal showModal={this.props.showModal}/>
+
+                        :
+
+                        null
+                    
+                    }
                 </div>
             </div>
         )

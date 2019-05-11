@@ -11,7 +11,7 @@ import './HeaderBook.css';
 function HeaderBook(props) {
     
 
-    console.log(props)
+    //console.log(props)
 
     return (
         <div className="container is-fullhd">

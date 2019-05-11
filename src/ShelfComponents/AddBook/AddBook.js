@@ -6,8 +6,23 @@ import OneAddBook from './OneAddBook';
 import TwoAddBook from './TwoAddBook';
 
 
+
 class AddBook extends Component {
 
+    constructor(props) {
+        super(props)
+
+        this.state={
+            showModal: false
+        }
+
+    }
+
+    toggleModal = () => {
+        this.setState({
+            showModal: !this.state.showModal
+        })
+    }
 
     render() {
         return (
@@ -45,8 +60,8 @@ class AddBook extends Component {
                 </section>
                 <br />
                 <Switch>
-                    <Route component={OneAddBook} path='/addBook/step1' />
-                    <Route component={TwoAddBook} path='/addBook/step2' />
+                    <Route render={(props) => <OneAddBook {...props} showModal={this.toggleModal} showModalState={this.state.showModal}/>} path='/addBook/step1' />
+                    <Route render={(props) => <TwoAddBook {...props} showModal={this.toggleModal} showModalState={this.state.showModal}/>} path='/addBook/step2' />
                 </Switch>
             </div>
         )

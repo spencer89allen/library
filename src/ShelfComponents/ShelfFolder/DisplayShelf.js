@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import DeleteBookModal from './DeleteBookModal';
 
 function DisplayShelf(props) {
-    console.log(props)
+    // console.log(props)
     const books = props.book.map(book => {
         return (
 
@@ -26,7 +26,7 @@ function DisplayShelf(props) {
                                 // <div className="button level-right is-danger is-outlined" onClick={() => props.delete(book.id)}>
                                 //     Remove
                                 // </div>
-                                <div className="button level-right is-danger is-outlined" onClick={() => props.toggleDeleteBook()}>
+                                <div className="button level-right is-danger is-outlined" onClick={() => props.toggleDeleteBook(book.id)}>
                                     Remove
                                 </div>
                             )
@@ -36,8 +36,8 @@ function DisplayShelf(props) {
                             )
                     }
                     {
-                        props.showModal ? <DeleteBookModal 
-                                                    info={props.book}
+                        props.showModal && props.selectedBook === book.id ? <DeleteBookModal 
+                                                    info={book}
                                                     delete={props.delete} 
                                                     toggleDeleteBook={props.toggleDeleteBook}
                                             />

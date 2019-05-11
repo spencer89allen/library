@@ -16,6 +16,7 @@ class Shelf extends Component {
     state = {
         bookList: [],
         showModal: false,
+        selectedBook: ''
     }
 
     componentDidMount() {
@@ -37,6 +38,7 @@ class Shelf extends Component {
                 bookList: response.data
             })
         })
+
     };
 
     handleLogout = () => {
@@ -45,9 +47,10 @@ class Shelf extends Component {
         })
     };
 
-    toggleDeleteBook = () => {
+    toggleDeleteBook = (id) => {
         this.setState({
             showModal: !this.state.showModal,
+            selectedBook: id,
         })
     }
 
@@ -60,6 +63,7 @@ class Shelf extends Component {
                     bookId={this.state.bookList.id}
                     toggleDeleteBook={this.toggleDeleteBook}
                     showModal={this.state.showModal}
+                    selectedBook={this.state.selectedBook}
                     />
                 <Footer />
             </div>
