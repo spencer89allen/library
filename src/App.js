@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 import { connect } from 'react-redux';
 
 
@@ -12,7 +12,7 @@ import { login } from './redux/LoginReducer';
 class App extends Component {
 
   componentWillMount() {
-    axios.get(`/api/me`).then((response) => {
+    Axios.get(`/api/me`).then((response) => {
       this.props.login(response.data)
     })
   }
